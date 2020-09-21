@@ -1,6 +1,6 @@
 import pytest
 import itertools
-from infi.dtypes.nqn import NQN, iSCSIName, InvalidNQN, make_iscsi_name  # pylint: disable=no-name-in-module
+from infi.dtypes.nqn import NQN, NVMeName, InvalidNQN, make_nvme_name  # pylint: disable=no-name-in-module
 
 
 def test_basic():
@@ -24,7 +24,7 @@ def test_rfc_examples():
     assert a.get_extra_fields() == ()
 
 
-@pytest.mark.parametrize('copy_types', itertools.product([NQN, iSCSIName], repeat=2))
+@pytest.mark.parametrize('copy_types', itertools.product([NQN, NVMeName], repeat=2))
 @pytest.mark.parametrize('is_upper', [False, True])
 def test_copy_ctor(copy_types, is_upper):
     source_type, target_type = copy_types
@@ -34,20 +34,20 @@ def test_copy_ctor(copy_types, is_upper):
 
 
 def test_invalid_nqn():
-    iscsi_identifier = '1'
+    nvme_identifier = '1'
     with pytest.raises(InvalidNQN):
-        NQN(iscsi_identifier)
-    iSCSIName(iscsi_identifier)
-    assert isinstance(make_iscsi_name(iscsi_identifier), iSCSIName)
+        NQN(nvme_identifier)
+    NVMeName(nvme_identifier)
+    assert isinstance(make_nvme_name(nvme_identifier), NVMeName)
 
 
 def test_equality():
-    iscsi_identifier = 'nqn.2001-04.com.example'
-    nqn = NQN(iscsi_identifier)
-    iscsi_name = iSCSIName(iscsi_identifier)
-    assert nqn == iscsi_name
-    assert nqn == iscsi_identifier
-    assert nqn == iscsi_identifier.upper()
-    assert iscsi_name == nqn
-    assert iscsi_name == iscsi_identifier
-    assert iscsi_name == iscsi_identifier.upper()
+    nvme_identifier = 'nqn.2001-04.com.example'
+    nqn = NQN(nvme_identifier)
+    nvme_name = NVMeName(nvme_identifier)
+    assert nqn == nvme_name
+    assert nqn == nvme_identifier
+    assert nqn == nvme_identifier.upper()
+    assert nvme_name == nqn
+    assert nvme_name == nvme_identifier
+    assert nvme_name == nvme_identifier.upper()
