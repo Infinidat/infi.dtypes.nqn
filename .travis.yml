@@ -1,0 +1,18 @@
+language: python
+python:
+- '2.7'
+- '3.4'
+- '3.5'
+- '3.6'
+install:
+- pip install -e .
+- pip install -U pytest
+script: pytest tests
+deploy:
+  provider: pypi
+  user: gleon99
+  password:
+    secure: QancgFtxVGqSp8dW2WSXV+AXlIx/0j4AMqlnny1r77+1Zq+64RYF2IeJpGwPBj0Rh5ymVXReJPd+SlB8W0f00xkCSRWLCIsuYNS08vbexrGYbyzCfm3YHBXYOjd2yWtBNeWXjb71GmEbyoG130egwizNhzdRJebq31gN7TE1slmIBAcdN/eJI9MlfEZmMJ2J4ODIkyZQYfnEVyIQHGSxB4FaeGEXsNtipAjy3H3ZRUtlj7QBNnFExqQpUqe3WTMJ8eIrDytOSnmdLVPGk9Ub1Khne61c0pjr6OCG7n+ZuxHM8kTtV4kUJYw8DRT5UryxSV/Bq8DbaAacPBSH0gfNMU2jfXc1bGctnDCs26ITYIX1izNoyzzj7HtltfgJaunFdz+zwJ4Q7NTMGwiJ9D4Usv2oWCR0tH0vrFvqnhk6WNyHZ1MeVU6Jw5z/qTEQoGpVGGeAbrmpnc0xUaY/tdHnqcy7zAZwoH+LfLpamoJmObxO4ktgBBad2NhVE3Ty0hKAaxwao/SYMi1WAJRxOWVPdd2RgskIX3QaGUyZNMDFoF/MJK6xkeS6TQ9BVfcEX4jkjHq8I3tQKT16f87j9yN2osmm8UlU4EK5189XnjWax6frMIF0pfbn+20ljvocd/W5cX5n8mqAC7cP47MILJq0PV1+2ohAToO6aLhOl2fI0Wk=
+  on:
+    tags: true
+    repo: Infinidat/infi.dtypes.nqn
